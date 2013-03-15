@@ -11,7 +11,7 @@ window.onload = function() {
   var pageInfo = JSON.parse(json);
   console.dir(pageInfo);
 
-  document.title = pageInfo.title;
+  document.title = document.title + ' ' + pageInfo.title;
   setFavicon(pageInfo.favIconUrl);
 
   _.each(document.querySelectorAll('.pageTitle'), function(o) {
