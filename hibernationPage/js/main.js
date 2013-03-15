@@ -13,4 +13,16 @@ window.onload = function() {
 
   document.title = pageInfo.title;
   setFavicon(pageInfo.favIconUrl);
+
+  _.each(document.querySelectorAll('.pageTitle'), function(o) {
+    o.innerText = pageInfo.title;
+  });
+
+  _.each(document.querySelectorAll('.pageURL'), function(o) {
+    o.innerText = pageInfo.url;
+  });
+
+  _.each(document.querySelectorAll('a.pageURLLink'), function(o) {
+    o.setAttribute('href', pageInfo.url);
+  })
 }
