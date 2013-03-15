@@ -41,6 +41,7 @@ a.wakeUpButton {
 span.pageURL {
   color: darkgrey;
   font-size: 13px;
+  word-wrap: break-word;
 }
 
 a.wakeUpButton:active {
