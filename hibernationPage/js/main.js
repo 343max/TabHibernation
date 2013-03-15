@@ -25,4 +25,8 @@ window.onload = function() {
   _.each(document.querySelectorAll('a.pageURLLink'), function(o) {
     o.setAttribute('href', pageInfo.url);
   });
+
+  document.body.onclick = function() {
+    document.location.href = pageInfo.url;
+  }
 }
