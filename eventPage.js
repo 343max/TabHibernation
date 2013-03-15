@@ -11,6 +11,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
         console.log('hibernate ' + tab.url);
         console.dir(tab);
+
+        var pageInfo = {
+          url: tab.url,
+          title: tab.title,
+          favIconUrl: tab.favIconUrl
+        };
+
+        var hibernationUrl = chrome.extension.getURL('hibernationPage/index.html');
+        hibernationUrl += '#' + encodeURIComponent(JSON.stringify(pageInfo));
+        console.log(hibernationUrl);
+        chrome.tabs.update(tab.id, {url: hibernationUrl});
       });
     })
   });
