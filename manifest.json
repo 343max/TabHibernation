@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Hibernation",
+  "description": "Sends your inactive tabs to sleep",
+  "version": "0.1",
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_icon": "icon.png"
+  }
+}
