@@ -9,7 +9,6 @@ function setFavicon(faviconHref) {
 window.onload = function() {
   var json = decodeURIComponent(document.location.hash.substr(1, 100000));
   var pageInfo = JSON.parse(json);
-  console.dir(pageInfo);
 
   document.title = document.title + ' ' + pageInfo.title;
   setFavicon(pageInfo.favIconUrl);
@@ -22,11 +21,17 @@ window.onload = function() {
     o.innerText = pageInfo.url;
   });
 
+  var restorePage = function() {
+    if (window.history.length >= 2) {
+      window.history.back();
+    } else {
+      document.location.href = pageInfo.url;
+    }
+  }
+
   _.each(document.querySelectorAll('a.pageURLLink'), function(o) {
-    o.setAttribute('href', pageInfo.url);
+    o.onclick = restorePage;
   });
 
-  document.body.onclick = function() {
-    document.location.href = pageInfo.url;
-  }
+  document.body.onclick = restorePage;
 }
