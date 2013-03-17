@@ -31,7 +31,14 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
           var hibernationUrl = chrome.extension.getURL('hibernationPage/index.html');
           hibernationUrl += '#' + encodeURIComponent(JSON.stringify(pageInfo));
-          console.log(hibernationUrl);
+//          hibernationUrl = 'data:text/html;charset=utf-8,' +
+//            encodeURIComponent( // Escape for URL formatting
+//              '<!DOCTYPE html>'+
+//                '<html lang="en">'+
+//                '<head><title>Embedded Window</title></head>'+
+//                '<body><h1>42</h1></body>'+
+//                '</html>'
+//            );
           chrome.tabs.update(tab.id, {url: hibernationUrl});
         }, c * 100);
         c++;
