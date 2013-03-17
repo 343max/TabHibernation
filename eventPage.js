@@ -4,6 +4,16 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
   var c = 0;
 
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('GET', chrome.extension.getURL('hibernationPage/index.html'), true);
+  xmlHttp.onreadystatechange = function () {
+    console.dir(xmlHttp);
+    if (xmlHttp.readyState == 4) {
+//      alert(xmlHttp.responseText);
+    }
+  };
+  xmlHttp.send(null);
+
   chrome.windows.getAll({ populate: true}, function(windows) {
     _.each(windows, function(win) {
       _.each(win.tabs, function(tab) {
