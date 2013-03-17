@@ -1,3 +1,11 @@
+Array.prototype.each = function(callback) {
+  for(var i = 0; i < this.length; i++) {
+    callback(this[i]);
+  }
+};
+
+NodeList.prototype.each = Array.prototype.each;
+
 function setFavicon(faviconHref) {
   var link = document.createElement('link');
   link.type = 'image/x-icon';
@@ -13,11 +21,11 @@ window.onload = function() {
   document.title = document.title + ' ' + pageInfo.title;
   setFavicon(pageInfo.favIconUrl);
 
-  _.each(document.querySelectorAll('.pageTitle'), function(o) {
+  document.querySelectorAll('.pageTitle').each(function(o) {
     o.innerText = pageInfo.title;
   });
 
-  _.each(document.querySelectorAll('.pageURL'), function(o) {
+  document.querySelectorAll('.pageURL').each(function(o) {
     o.innerText = pageInfo.url;
   });
 
@@ -29,7 +37,7 @@ window.onload = function() {
     }
   }
 
-  _.each(document.querySelectorAll('a.pageURLLink'), function(o) {
+  document.querySelectorAll('a.pageURLLink').each(function(o) {
     o.onclick = restorePage;
   });
 
