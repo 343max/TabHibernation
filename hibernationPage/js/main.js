@@ -34,4 +34,10 @@ window.onload = function() {
   });
 
   document.body.onclick = restorePage;
+
+  window.addEventListener('keyup', function(event) {
+    if (event.keyIdentifier == "U+0020") {
+      restorePage();
+    }
+  });
 }
