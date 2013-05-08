@@ -20,7 +20,7 @@ function setFavicon(faviconHref) {
 }
 
 window.onload = function() {
-    var pageInfo = {/*pageInfoObject*/};
+    var pageInfo = /*083E5AA1-74B0-484B-B51B-3C05CA0B24B7*/{/*pageInfoObject*/}/*0D03FAB9-3C59-4B06-983B-7BD92619F1E6*/;
 
     document.title = document.title + ' ' + pageInfo.title;
     setFavicon(pageInfo.favIconUrl);
@@ -52,6 +52,42 @@ window.onload = function() {
             restorePage();
         }
     });
+
+    (function initAutoWakeup() {
+        var interval = 0;
+        var startTime = 0;
+
+        var setWakeupMessage = function(message) {
+            document.querySelector('.wakeupCountdown').innerText = message;
+        }
+
+        var intervalFunction = function() {
+            var duration = (new Date()).getTime() - startTime / 1000;
+            if (duration > 5) {
+                setWakeupMessage('');
+                restorePage();
+                window.clearInterval(interval);
+                interval = 0;
+            } else {
+                setWakeupMessage('wake up in ' + Math.round(5 - duration) + ' secs.');
+            }
+        }
+
+        window.addEventListener("focus", function() {
+            if (interval == 0) {
+                startTime = (new Date()).getTime();
+                interval = window.setInterval(intervalFunction, 1000);
+                intervalFunction();
+            }
+        });
+
+        window.addEventListener("blur", function() {
+            window.clearInterval(interval);
+            interval = 0;
+        });
+
+    })();
+
 }
 
     </script>
@@ -113,6 +149,7 @@ a.wakeUpButton:active {
     <div id="info">
         <h1>&quot;<span class="pageTitle"></span>&quot; is hibernating</h1>
         <p><span class="pageURL"></span></p>
+        <h3 class="wakeupCountdown"></h3>
         <p><a class="pageURLLink wakeUpButton">Wake up!</a></p>
     </div>
 </body>
