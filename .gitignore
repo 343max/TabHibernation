@@ -1,3 +1,6 @@
 .idea/TabHibernation.iml
 .idea/scopes/scope_settings.xml
 .idea/codeStyleSettings.xml
+
+Chrome/lib/
+TabHibernation.safariextension/lib/
