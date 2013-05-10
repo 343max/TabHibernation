@@ -15,7 +15,23 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
-	<dict/>
+	<dict>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>hibernateTabs</string>
+				<key>Identifier</key>
+				<string>toolbarHibernateItem</string>
+				<key>Image</key>
+				<string>lib/icon16.png</string>
+				<key>Label</key>
+				<string>Hibernate Tabs</string>
+				<key>Tool Tip</key>
+				<string>Send inactive tabs to sleep</string>
+			</dict>
+		</array>
+	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
