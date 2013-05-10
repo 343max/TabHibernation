@@ -16,6 +16,8 @@
 	<string>1</string>
 	<key>Chrome</key>
 	<dict>
+		<key>Global Page</key>
+		<string>global-page.html</string>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
