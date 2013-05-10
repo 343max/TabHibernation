@@ -10,21 +10,23 @@ var performCommand = function(event) {
 
 				_.each(safari.application.browserWindows, function(win) {
 					_.each(win.tabs, function(tab) {
-						if(tab === win.activeTab) return;
-						if(!tab.url.match(/^https?:\/\//)) return;
+						if(typeof tab.url !== 'undefined') {
+							if(tab === win.activeTab) return;
+							if(!tab.url.match(/^https?:\/\//)) return;
 
-						_.delay(function() {
-							var pageInfo = {
-								url: tab.url,
-								title: tab.title
-							};
+							_.delay(function() {
+								var pageInfo = {
+									url: tab.url,
+									title: tab.title
+								};
 
-							var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo));
-							var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml);
-							tab.url = dataURL;
-						}, c * 100);
+								var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo));
+								var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml);
+								tab.url = dataURL;
+							}, c * 100);
 
-						c++;
+							c++;
+						}
 					});
 				});
 			}
