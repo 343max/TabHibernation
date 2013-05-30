@@ -10,6 +10,7 @@ var performCommand = function(event) {
 
 				_.each(safari.application.browserWindows, function(win) {
 					_.each(win.tabs, function(tab) {
+						// Safari returns undefined for sites like the history page or data URIs
 						if(typeof tab.url !== 'undefined') {
 							if(tab === win.activeTab) return;
 							if(!tab.url.match(/^https?:\/\//)) return;
