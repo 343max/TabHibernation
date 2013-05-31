@@ -2,7 +2,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   var c = 0;
 
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open('GET', chrome.extension.getURL('hibernationPage/index.html'), true);
+  xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true);
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4) {
       var html = xmlHttp.responseText;

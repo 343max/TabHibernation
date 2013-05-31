@@ -23,7 +23,10 @@ window.onload = function() {
     var pageInfo = {/*pageInfoObject*/};
 
     document.title = document.title + ' ' + pageInfo.title;
-    setFavicon(pageInfo.favIconUrl);
+
+    if(typeof pageInfo.favIconUrl !== 'undefined') {
+        setFavicon(pageInfo.favIconUrl);
+    }
 
     document.querySelectorAll('.pageTitle').each(function(o) {
         o.innerText = pageInfo.title;
