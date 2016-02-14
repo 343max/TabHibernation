@@ -1,5 +1,5 @@
 PATHS = "Chrome" "TabHibernation.safariextension"
-FILES = "underscore.js" "hibernationPage/index.html" "icon16.png"
+FILES = "hibernationPage/index.html" "icon16.png"
 
 all:
 	@mkdir -p Chrome/lib/hibernationPage
@@ -10,6 +10,8 @@ all:
 			ln -f lib/$(file) $(path)/lib/$(file); \
 		) \
 	)
+
+	@ln -f lib/underscore.js TabHibernation.safariextension/lib/underscore.js
 
 clean:
 	@rm -rf Chrome/lib/

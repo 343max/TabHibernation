@@ -8,8 +8,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       var html = xmlHttp.responseText;
 
       chrome.windows.getAll({ populate: true}, function(windows) {
-        _.each(windows, function(win) {
-          _.each(win.tabs, function(tab) {
+        windows.forEach(function(win) {
+          win.tabs.forEach(function(tab) {
       			if (tab.active) return;
       			if (tab.status != 'complete') return;
       			if (!tab.url.match(/^https?:\/\//)) return;

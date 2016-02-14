@@ -15,7 +15,7 @@
     "default_title": "send inactive tabs to sleep"
   },
   "background": {
-    "scripts": ["lib/underscore.js", "eventPage.js"],
+    "scripts": ["eventPage.js"],
     "persistent": false
   },
   "icons": {
