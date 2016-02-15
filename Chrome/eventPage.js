@@ -10,8 +10,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 			chrome.windows.getAll({ populate: true}, function(windows) {
 				windows.forEach(function(win) {
 					win.tabs.forEach(function(tab) {
-						if (tab.active) return;
-						if (tab.highlighted) return;
+						if (tab.active || tab.highlighted || tab.pinned) return;
 						if (tab.status != 'complete') return;
 						if (!tab.url.match(/^https?:\/\//)) return;
 
