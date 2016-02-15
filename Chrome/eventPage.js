@@ -11,6 +11,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 				windows.forEach(function(win) {
 					win.tabs.forEach(function(tab) {
 						if (tab.active) return;
+						if (tab.highlighted) return;
 						if (tab.status != 'complete') return;
 						if (!tab.url.match(/^https?:\/\//)) return;
 
