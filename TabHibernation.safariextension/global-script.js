@@ -8,14 +8,14 @@ var performCommand = function(event) {
 			if(xmlHttp.readyState === 4) {
 				var html = xmlHttp.responseText;
 
-				_.each(safari.application.browserWindows, function(win) {
-					_.each(win.tabs, function(tab) {
+				safari.application.browserWindows.forEach(function(win) {
+					win.tabs.forEach(function(tab) {
 						// Safari returns undefined for sites like the history page or data URIs
 						if(typeof tab.url !== 'undefined') {
 							if(tab === win.activeTab) return;
 							if(!tab.url.match(/^https?:\/\//)) return;
 
-							_.delay(function() {
+							window.setTimeout(function() {
 								var pageInfo = {
 									url: tab.url,
 									title: tab.title

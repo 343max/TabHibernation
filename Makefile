@@ -11,8 +11,6 @@ all:
 		) \
 	)
 
-	@ln -f lib/underscore.js TabHibernation.safariextension/lib/underscore.js
-
 clean:
 	@rm -rf Chrome/lib/
 	@rm -rf TabHibernation.safariextension/lib/
