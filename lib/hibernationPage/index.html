@@ -3,13 +3,7 @@
 <head>
     <script type="text/javascript">
 
-Array.prototype.each = function(callback) {
-    for(var i = 0; i < this.length; i++) {
-        callback(this[i]);
-    }
-};
-
-NodeList.prototype.each = Array.prototype.each;
+NodeList.prototype.forEach = Array.prototype.forEach;
 
 function setFavicon(faviconHref) {
     var link = document.createElement('link');
@@ -28,11 +22,11 @@ window.onload = function() {
         setFavicon(pageInfo.favIconUrl);
     }
 
-    document.querySelectorAll('.pageTitle').each(function(o) {
+    document.querySelectorAll('.pageTitle').forEach(function(o) {
         o.innerText = pageInfo.title;
     });
 
-    document.querySelectorAll('.pageURL').each(function(o) {
+    document.querySelectorAll('.pageURL').forEach(function(o) {
         o.innerText = pageInfo.url;
     });
 
@@ -44,7 +38,7 @@ window.onload = function() {
         }
     }
 
-    document.querySelectorAll('a.pageURLLink').each(function(o) {
+    document.querySelectorAll('a.pageURLLink').forEach(function(o) {
         o.onclick = restorePage;
     });
 
