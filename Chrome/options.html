@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head><title>My Test Extension Options</title></head>
-<body>
+    <head>
+        <title>Tab Hibernation - Settings</title>
+    </head>
 
-<p>
-    <h2>Whitelist</h2>
-    <p>
-        Here you can input a whitelist for URLs which should not be hibernated when pressing the "send inactive tabs to sleep"-Button.<br />
-        For example: if you want to whitelist "sub.example.com" and "test.example.com", you MUST put them both and can't just type "*.example.com"<br />
-        You can also put something like "example.com/path/" in here, if you don't want to whitelist the whole domain.<br />
-        <br />
-        <strong>URLs must be complete and include http/https!</strong><br />
-        <strong>One URL per line!</strong>
-    </p>
-    <textarea id="whitelist" autofocus cols="50" rows="10" placeholder="http://www.example.com"></textarea><br />
-    <button id="save">Save</button>
-</p>
-<div id="status"></div>
+    <body>
+        <h2>Whitelist</h2>
 
-<script src="options.js"></script>
-</body>
+        <p>Here you can input a whitelist for URLs which should not be hibernated when pressing the "send inactive tabs to sleep"-Button.</p>
+
+        <p>For example: if you want to whitelist "sub.example.com" and "test.example.com", you MUST put them both and can't just type "*.example.com"</p>
+
+        <p>You can also put something like "example.com/path/" in here, if you don't want to whitelist the whole domain.</p>
+
+        <p>
+            <strong>URLs must be complete and include http/https!</strong><br />
+            <strong>One URL per line!</strong>
+        </p>
+
+        <textarea id="whitelist" autofocus cols="50" rows="5" placeholder="http://www.example.com"></textarea><br />
+        <button id="save">Save</button><div id="status" style="float: right; padding-top: 5px;"></div>
+
+        <script src="options.js"></script>
+    </body>
 </html>

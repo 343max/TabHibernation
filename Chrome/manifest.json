@@ -19,7 +19,10 @@
     "scripts": ["eventPage.js"],
     "persistent": false
   },
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
   "commands": {
     "hibernateCurrentTab": {
       "suggested_key": {
@@ -34,5 +37,5 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "minimum_chrome_version": "25.0"
+  "minimum_chrome_version": "40.0"
 }
