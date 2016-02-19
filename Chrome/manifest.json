@@ -18,6 +18,15 @@
     "scripts": ["eventPage.js"],
     "persistent": false
   },
+  "commands": {
+    "hibernateCurrentTab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "Command+Shift+H"
+      },
+      "description": "Hibernate the current Tab"
+    }
+  },
   "icons": {
     "16": "lib/icon16.png",
     "48": "icon48.png",

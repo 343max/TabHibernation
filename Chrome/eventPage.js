@@ -54,3 +54,17 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	};
 	xmlHttp.send(null);
 });
+
+chrome.commands.onCommand.addListener(function(command) {
+	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true);
+		xmlHttp.onreadystatechange = function () {
+			if (xmlHttp.readyState == 4) {
+				var html = xmlHttp.responseText;
+				sleepTab(html, tab[0], 100);
+			}
+		};
+		xmlHttp.send(null);
+	})
+});
