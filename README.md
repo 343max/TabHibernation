@@ -1,8 +1,11 @@
 ## TabHibernate
 
-TabHibernate will be a Chrome Extension that will send inactive Tabs into some kind of "Hibernate" mode – Mostly like [OneTab](https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall) but without removing the tabs from the tabbar.
+TabHibernate is a Browser Extension that will send inactive Tabs into some kind of "Hibernate" mode – Mostly like [OneTab](https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall) but without removing the tabs from the tabbar.
 
-You may download the extension for your browser in the [Chrome Web Store](https://chrome.google.com/webstore/detail/tab-hibernation/pbdpajcdgknpendpmecafmopknefafha/).
+You may download the extension in the [Chrome Web Store](https://chrome.google.com/webstore/detail/tab-hibernation/pbdpajcdgknpendpmecafmopknefafha/).
+
+**Currently only the Chrome-Version is really supported.
+Safari-Version needs a maintainer and a Firefox-Version would be nice to have, contact [@HorayNarea](https://github.com/HorayNarea) if you want to do something about that.**
 
 ## Building the extension
 

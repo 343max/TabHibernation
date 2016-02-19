@@ -13,6 +13,21 @@ function sleepTab(html, tab, timeout) {
 	}, timeout)
 }
 
+chrome.storage.sync.get(function(items) {
+	whitelist = items.whitelist
+	whitelistArray = items.whitelist.split('\n')
+})
+
+function inWhitelist(url) {
+	listed = false
+	whitelistArray.forEach(function(item) {
+		if (url.startsWith(item)) {
+			listed = true
+		}
+	})
+	return listed
+}
+
 chrome.browserAction.onClicked.addListener(function(tab) {
 	var c = 0
 
@@ -28,6 +43,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 						if (tab.active || tab.highlighted || tab.pinned) return
 						if (tab.status !== 'complete') return
 						if (!tab.url.match(/^https?:\/\//)) return
+						if (inWhitelist(tab.url)) return
 
 						sleepTab(html, tab, c * 100)
 						c++
@@ -55,4 +71,18 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 		}
 	}
 	xmlHttp.send(null)
+})
+
+chrome.commands.onCommand.addListener(function(command) {
+	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
+		var xmlHttp = new XMLHttpRequest()
+		xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
+		xmlHttp.onreadystatechange = function () {
+			if (xmlHttp.readyState === 4) {
+				var html = xmlHttp.responseText
+				sleepTab(html, tab[0], 100)
+			}
+		}
+		xmlHttp.send(null)
+	})
 })
