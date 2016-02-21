@@ -13,13 +13,18 @@ function sleepTab(html, tab, timeout) {
 	}, timeout)
 }
 
+var whitelist
+var whitelistArray = new Array()
+
 chrome.storage.sync.get(function(items) {
-	whitelist = items.whitelist
-	whitelistArray = items.whitelist.split('\n')
+	if (items.whitelist) {
+		whitelist = items.whitelist
+		whitelistArray = whitelist.split('\n')
+	}
 })
 
 function inWhitelist(url) {
-	listed = false
+	var listed = false
 	whitelistArray.forEach(function(item) {
 		if (url.startsWith(item)) {
 			listed = true
