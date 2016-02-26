@@ -1,18 +1,5 @@
 'use strict'
 
-function sleepTab(html, tab, timeout) {
-	window.setTimeout(function() {
-		var pageInfo = {
-			url: tab.url,
-			title: tab.title,
-			favIconUrl: tab.favIconUrl
-		}
-		var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
-		var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml)
-		chrome.tabs.update(tab.id, {url: dataURL})
-	}, timeout)
-}
-
 var whitelist
 var whitelistArray = new Array()
 
@@ -31,6 +18,19 @@ function inWhitelist(url) {
 		}
 	})
 	return listed
+}
+
+function sleepTab(html, tab, timeout) {
+	window.setTimeout(function() {
+		var pageInfo = {
+			url: tab.url,
+			title: tab.title,
+			favIconUrl: tab.favIconUrl
+		}
+		var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
+		var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml)
+		chrome.tabs.update(tab.id, {url: dataURL})
+	}, timeout)
 }
 
 chrome.browserAction.onClicked.addListener(function(tab) {
