@@ -18,24 +18,22 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true);
-	xmlHttp.onreadystatechange = function () {
-		if (xmlHttp.readyState == 4) {
-			var html = xmlHttp.responseText;
+	xmlHttp.onload = function () {
+		var html = xmlHttp.responseText;
 
-			chrome.windows.getAll({ populate: true}, function(windows) {
-				windows.forEach(function(win) {
-					win.tabs.forEach(function(tab) {
-						if (tab.active || tab.highlighted || tab.pinned) return;
-						if (tab.status != 'complete') return;
-						if (!tab.url.match(/^https?:\/\//)) return;
-						if (inWhitelist(tab.url)) return;
+		chrome.windows.getAll({ populate: true}, function(windows) {
+			windows.forEach(function(win) {
+				win.tabs.forEach(function(tab) {
+					if (tab.active || tab.highlighted || tab.pinned) return;
+					if (tab.status != 'complete') return;
+					if (!tab.url.match(/^https?:\/\//)) return;
+					if (inWhitelist(tab.url)) return;
 
-						sleepTab(html, tab, c * 100);
-						c++;
-					});
-				})
-			});
-		}
+					sleepTab(html, tab, c * 100);
+					c++;
+				});
+			})
+		});
 	};
 	xmlHttp.send(null);
 });
@@ -62,11 +60,9 @@ chrome.contextMenus.create({
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true);
-	xmlHttp.onreadystatechange = function () {
-		if (xmlHttp.readyState == 4) {
-			var html = xmlHttp.responseText;
-			sleepTab(html, tab, 100);
-		}
+	xmlHttp.onload = function () {
+		var html = xmlHttp.responseText;
+		sleepTab(html, tab, 100);
 	};
 	xmlHttp.send(null);
 });
@@ -75,11 +71,9 @@ chrome.commands.onCommand.addListener(function(command) {
 	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true);
-		xmlHttp.onreadystatechange = function () {
-			if (xmlHttp.readyState == 4) {
-				var html = xmlHttp.responseText;
-				sleepTab(html, tab[0], 100);
-			}
+		xmlHttp.onload = function () {
+			var html = xmlHttp.responseText;
+			sleepTab(html, tab[0], 100);
 		};
 		xmlHttp.send(null);
 	})
