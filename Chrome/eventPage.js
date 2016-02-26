@@ -1,3 +1,5 @@
+var whitelistArray = new Array()
+
 chrome.storage.sync.get(function(items) {
 	whitelist = items.whitelist
 	whitelistArray = items.whitelist.split("\n")
