@@ -60,7 +60,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 chrome.contextMenus.create({
 	id : 'SleepTab',
-	title : 'Hibernate This Page',
+	title : chrome.i18n.getMessage('contextMenuTitle'),
 	contexts : ['page']
 })
 

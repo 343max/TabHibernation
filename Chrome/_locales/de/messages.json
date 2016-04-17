@@ -1,0 +1,58 @@
+{
+	"extensionName": {
+		"message": "Tab Hibernation",
+		"description": "Name der Extension"
+	},
+	"extensionDescription": {
+		"message": "schickt inaktive Tabs schlafen",
+		"description": "Beschreibung der Extension"
+	},
+	"defaultTitle": {
+		"message": "inaktive Tabs schlafen legen",
+		"description": "Tooltip, der in der Google Chrome Toolbar erscheint"
+	},
+	"commandsDescription": {
+		"message": "Aktiven Tab schlafen legen",
+		"description": "Beschreibung für den Keyboard-Shortcut"
+	},
+	"contextMenuTitle": {
+		"message": "Diese Seite schlafen legen",
+		"description": "Titel des Kontextmenüeintrags"
+	},
+	"saveOptions": {
+		"message": "Optionen gespeichert.",
+		"description": "Statustext, wenn Optionen gespeichert werden"
+	},
+	"optionsTitle": {
+		"message": "Tab Hibernation - Einstellungen",
+		"description": "Titel der Einstellungsseite"
+	},
+	"optionsHeading": {
+		"message": "Whitelist",
+		"description": "Überschrift der Einstellungsseite"
+	},
+	"optionsFirstParagraph": {
+		"message": "Hier können URLs eingetragen werden, die nicht schlafen gelegt werden sollen, wenn der \"inaktive Tabs schlafen legen\"-Button gedrückt wird.",
+		"description": "Erster Absatz der Einstellungsseite"
+	},
+	"optionsSecondParagraph": {
+		"message": "Wenn z.B. \"sub.example.com\" und \"test.example.com\" wach gehalten werden sollen, müssen beide eingetragen werden und nicht nur \"*.example.com\"",
+		"description": "Zweiter Absatz der Einstellungsseite"
+	},
+	"optionsThirdParagraph": {
+		"message": "Hier kann auch ein Pfad wie \"example.com/path/\" eingetragen werden, wenn nicht die gesamte Domain wach gehalten werden soll.",
+		"description": "Dritter Absatz der Einstellungsseite"
+	},
+	"optionsFirstStrong": {
+		"message": "URLs müssen vollständig sein und http/https enthalten!",
+		"description": "Erster fett formatierter Satz auf der Einstellungsseite"
+	},
+	"optionsSecondStrong": {
+		"message": "Eine URL pro Zeile!",
+		"description": "Zweiter fett formatierter Satz auf der Einstellungsseite"
+	},
+	"optionsSaveButton": {
+		"message": "Speichern",
+		"description": "Text des Speichern-Buttons"
+	}
+}
