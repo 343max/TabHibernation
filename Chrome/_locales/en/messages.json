@@ -1,0 +1,58 @@
+{
+	"extensionName": {
+		"message": "Tab Hibernation",
+		"description": "extension name"
+	},
+	"extensionDescription": {
+		"message": "Sends your inactive tabs to sleep",
+		"description": "extension description"
+	},
+	"defaultTitle": {
+		"message": "send inactive tabs to sleep",
+		"description": "tooltip shown in the main Google Chrome toolbar"
+	},
+	"commandsDescription": {
+		"message": "Hibernate the current Tab",
+		"description": "keyboard shortcut description"
+	},
+	"contextMenuTitle": {
+		"message": "Hibernate This Page",
+		"description": "context menu entry title"
+	},
+	"saveOptions": {
+		"message": "Options saved.",
+		"description": "status text when options are saved"
+	},
+	"optionsTitle": {
+		"message": "Tab Hibernation - Settings",
+		"description": "options page title"
+	},
+	"optionsHeading": {
+		"message": "Whitelist",
+		"description": "options page heading"
+	},
+	"optionsFirstParagraph": {
+		"message": "Here you can input a whitelist for URLs which should not be hibernated when pressing the \"send inactive tabs to sleep\"-Button.",
+		"description": "options page first paragraph"
+	},
+	"optionsSecondParagraph": {
+		"message": "For example: if you want to whitelist \"sub.example.com\" and \"test.example.com\", you MUST put them both and can't just type \"*.example.com\"",
+		"description": "options page second paragraph"
+	},
+	"optionsThirdParagraph": {
+		"message": "You can also put something like \"example.com/path/\" in here, if you don't want to whitelist the whole domain.",
+		"description": "options page third paragraph"
+	},
+	"optionsFirstStrong": {
+		"message": "URLs must be complete and include http/https!",
+		"description": "options page first bold sentence"
+	},
+	"optionsSecondStrong": {
+		"message": "One URL per line!",
+		"description": "options page second bold sentence"
+	},
+	"optionsSaveButton": {
+		"message": "Save",
+		"description": "save button text"
+	}
+}
