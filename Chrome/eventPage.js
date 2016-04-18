@@ -20,17 +20,15 @@ function inWhitelist(url) {
 	return listed
 }
 
-function sleepTab(html, tab, timeout) {
-	window.setTimeout(function() {
-		var pageInfo = {
-			url: tab.url,
-			title: tab.title,
-			favIconUrl: tab.favIconUrl
-		}
-		var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
-		var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml)
-		chrome.tabs.update(tab.id, {url: dataURL})
-	}, timeout)
+function sleepTab(html, tab) {
+	var pageInfo = {
+		url: tab.url,
+		title: tab.title,
+		favIconUrl: tab.favIconUrl
+	}
+	var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
+	var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml)
+	chrome.tabs.update(tab.id, {url: dataURL})
 }
 
 chrome.browserAction.onClicked.addListener(function(tab) {
@@ -49,7 +47,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 					if (!tab.url.match(/^https?:\/\//)) return
 					if (inWhitelist(tab.url)) return
 
-					sleepTab(html, tab, c * 100)
+					sleepTab(html, tab)
 					c++
 				})
 			})
@@ -69,7 +67,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
 	xmlHttp.onload = function () {
 		var html = xmlHttp.responseText
-		sleepTab(html, tab, 100)
+		sleepTab(html, tab)
 	}
 	xmlHttp.send(null)
 })
@@ -80,7 +78,7 @@ chrome.commands.onCommand.addListener(function(command) {
 		xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
 		xmlHttp.onload = function () {
 			var html = xmlHttp.responseText
-			sleepTab(html, tab[0], 100)
+			sleepTab(html, tab[0])
 		}
 		xmlHttp.send(null)
 	})
