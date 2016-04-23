@@ -5,7 +5,7 @@ function performCommand(event) {
 		var c = 0
 
 		var xmlHttp = new XMLHttpRequest()
-		xmlHttp.open('GET', safari.extension.baseURI + 'lib/hibernationPage/index.html', true)
+		xmlHttp.open('GET', safari.extension.baseURI + 'hibernationPage/index.html', true)
 		xmlHttp.onload = function() {
 			var html = xmlHttp.responseText
 

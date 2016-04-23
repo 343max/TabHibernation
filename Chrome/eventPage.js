@@ -35,7 +35,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	var c = 0
 
 	var xmlHttp = new XMLHttpRequest()
-	xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
+	xmlHttp.open('GET', chrome.extension.getURL('hibernationPage/index.html'), true)
 	xmlHttp.onload = function () {
 		var html = xmlHttp.responseText
 
@@ -64,7 +64,7 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	var xmlHttp = new XMLHttpRequest()
-	xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
+	xmlHttp.open('GET', chrome.extension.getURL('hibernationPage/index.html'), true)
 	xmlHttp.onload = function () {
 		var html = xmlHttp.responseText
 		sleepTab(html, tab)
@@ -75,7 +75,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 chrome.commands.onCommand.addListener(function(command) {
 	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
 		var xmlHttp = new XMLHttpRequest()
-		xmlHttp.open('GET', chrome.extension.getURL('lib/hibernationPage/index.html'), true)
+		xmlHttp.open('GET', chrome.extension.getURL('hibernationPage/index.html'), true)
 		xmlHttp.onload = function () {
 			var html = xmlHttp.responseText
 			sleepTab(html, tab[0])
