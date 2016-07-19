@@ -54,5 +54,13 @@
 	"optionsSaveButton": {
 		"message": "Speichern",
 		"description": "Text des Speichern-Buttons"
+	},
+	"hibernationPageInfo": {
+		"message": "schläft",
+		"description": "Infotext, der auf der inaktiven Seite angezeigt wird"
+	},
+	"hibernationPageButton": {
+		"message": "Aufwachen!",
+		"description": "Text des Aufweck-Buttons einer inaktiven Seite"
 	}
 }

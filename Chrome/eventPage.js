@@ -24,6 +24,8 @@ function sleepTab(html, tab) {
 	var pageInfo = {
 		url: tab.url,
 		title: tab.title,
+		hibernationInfo: chrome.i18n.getMessage('hibernationPageInfo'),
+		buttonText: chrome.i18n.getMessage('hibernationPageButton'),
 		favIconUrl: tab.favIconUrl
 	}
 	var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
