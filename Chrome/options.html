@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tab Hibernation - Settings</title>
+        <title id="title"></title>
     </head>
 
     <body>
-        <h2>Whitelist</h2>
+        <h2 id="heading"></h2>
 
-        <p>Here you can input a whitelist for URLs which should not be hibernated when pressing the "send inactive tabs to sleep"-Button.</p>
+        <p id="firstParagraph"></p>
 
-        <p>For example: if you want to whitelist "sub.example.com" and "test.example.com", you MUST put them both and can't just type "*.example.com"</p>
+        <p id="secondParagraph"></p>
 
-        <p>You can also put something like "example.com/path/" in here, if you don't want to whitelist the whole domain.</p>
+        <p id="thirdParagraph"></p>
 
         <p>
-            <strong>URLs must be complete and include http/https!</strong><br />
-            <strong>One URL per line!</strong>
+            <strong id="firstStrong"></strong><br />
+            <strong id="secondStrong"></strong>
         </p>
 
         <textarea id="whitelist" autofocus cols="50" rows="5" placeholder="http://www.example.com"></textarea><br />
-        <button id="save">Save</button><div id="status" style="float: right; padding-top: 5px;"></div>
+        <button id="save"></button><div id="status" style="float: right; padding-top: 5px;"></div>
 
         <script src="options.js"></script>
     </body>

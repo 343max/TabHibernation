@@ -2,5 +2,7 @@
 .idea/scopes/scope_settings.xml
 .idea/codeStyleSettings.xml
 
-Chrome/lib/
-TabHibernation.safariextension/lib/
+Chrome/icon16.png
+TabHibernation.safariextension/icon16.png
+
+node_modules/
