@@ -60,7 +60,7 @@
 		"description": "Infotext, der auf der inaktiven Seite angezeigt wird"
 	},
 	"hibernationPageButton": {
-		"message": "Aufwachen!",
+		"message": "Aufwecken",
 		"description": "Text des Aufweck-Buttons einer inaktiven Seite"
 	}
 }
