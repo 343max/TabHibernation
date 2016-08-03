@@ -54,5 +54,13 @@
 	"optionsSaveButton": {
 		"message": "Save",
 		"description": "save button text"
+	},
+	"hibernationPageInfo": {
+		"message": "is hibernating",
+		"description": "info shown when page is hibernating"
+	},
+	"hibernationPageButton": {
+		"message": "Wake up!",
+		"description": "text of the button to wake up a hibernating page"
 	}
 }

@@ -34,9 +34,18 @@ window.onload = function() {
         o.innerText = pageInfo.title;
     });
 
+    document.querySelectorAll('.hibernationInfo').forEach(function(o) {
+        o.innerText = pageInfo.hibernationInfo;
+    });
+
     document.querySelectorAll('.pageURL').forEach(function(o) {
         o.innerText = pageInfo.url;
     });
+
+    document.querySelectorAll('.wakeUpButton').forEach(function(o) {
+        o.innerText = pageInfo.buttonText;
+    });
+
 
     document.onclick = restorePage;
 
@@ -104,9 +113,9 @@ a.wakeUpButton:active {
 </head>
 <body>
     <div id="info">
-        <h1>&quot;<span class="pageTitle"></span>&quot; is hibernating</h1>
+        <h1>&quot;<span class="pageTitle"></span>&quot; <span class="hibernationInfo"></h1>
         <p><span class="pageURL"></span></p>
-        <p><a class="pageURLLink wakeUpButton">Wake up!</a></p>
+        <p><a class="pageURLLink wakeUpButton"></a></p>
     </div>
 </body>
 </html>
