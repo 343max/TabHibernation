@@ -48,8 +48,9 @@ window.onload = function() {
     });
 
 
+    // restore when space-key is pressed
     window.addEventListener('keyup', function(event) {
-        if (event.keyIdentifier == "U+0020") {
+        if (event.key == " ") {
             restorePage();
         }
     });
