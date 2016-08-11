@@ -5,6 +5,8 @@
 
 NodeList.prototype.forEach = Array.prototype.forEach;
 
+var pageInfo = {/*pageInfoObject*/};
+
 function setFavicon(faviconHref) {
     var link = document.createElement('link');
     link.type = 'image/x-icon';
@@ -22,8 +24,6 @@ function restorePage() {
 }
 
 window.onload = function() {
-    var pageInfo = {/*pageInfoObject*/};
-
     document.title = document.title + ' ' + pageInfo.title;
 
     if(typeof pageInfo.favIconUrl !== 'undefined') {
