@@ -2,24 +2,23 @@
 <html>
 <head>
     <script type="text/javascript">
+'use strict'
 
-NodeList.prototype.forEach = Array.prototype.forEach;
-
-var pageInfo = {/*pageInfoObject*/};
+const pageInfo = {/*pageInfoObject*/}
 
 function setFavicon(faviconHref) {
-    var link = document.createElement('link');
-    link.type = 'image/x-icon';
-    link.rel = 'shortcut icon';
-    link.href = faviconHref;
-    document.getElementsByTagName('head')[0].appendChild(link);
+    const link = document.createElement('link')
+    link.type = 'image/x-icon'
+    link.rel = 'shortcut icon'
+    link.href = faviconHref
+    document.getElementsByTagName('head')[0].appendChild(link)
 }
 
 function restorePage() {
     if (window.history.length >= 2) {
-        window.history.back();
+        window.history.back()
     } else {
-        document.location.href = pageInfo.url;
+        document.location.href = pageInfo.url
     }
 }
 
@@ -50,12 +49,11 @@ window.onload = function() {
 
     // restore when space-key is pressed
     window.addEventListener('keyup', function(event) {
-        if (event.key == " ") {
-            restorePage();
+        if (event.key === ' ') {
+            restorePage()
         }
-    });
+    })
 }
-
     </script>
     <style>
 body {
