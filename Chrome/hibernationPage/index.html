@@ -25,8 +25,8 @@ function restorePage() {
 window.onload = function() {
     document.title += pageInfo.title
 
-    if(typeof pageInfo.favIconUrl !== 'undefined') {
-        setFavicon(pageInfo.favIconUrl);
+    if (pageInfo.favIconUrl !== undefined) {
+        setFavicon(pageInfo.favIconUrl)
     }
 
     document.getElementById('pageTitle').innerText = pageInfo.title
