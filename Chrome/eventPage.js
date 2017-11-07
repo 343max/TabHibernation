@@ -1,7 +1,7 @@
 'use strict'
 
-var whitelist
-var whitelistArray = new Array()
+let whitelist
+let whitelistArray = new Array()
 
 chrome.storage.sync.get(function(items) {
 	if (items.whitelist) {
@@ -11,7 +11,7 @@ chrome.storage.sync.get(function(items) {
 })
 
 function inWhitelist(url) {
-	var listed = false
+	let listed = false
 	whitelistArray.forEach(function(item) {
 		if (url.startsWith(item)) {
 			listed = true
@@ -21,25 +21,23 @@ function inWhitelist(url) {
 }
 
 function sleepTab(html, tab) {
-	var pageInfo = {
+	const pageInfo = {
 		url: tab.url,
 		title: tab.title,
 		hibernationInfo: chrome.i18n.getMessage('hibernationPageInfo'),
 		buttonText: chrome.i18n.getMessage('hibernationPageButton'),
 		favIconUrl: tab.favIconUrl
 	}
-	var pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
-	var dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(pageHtml)
+	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
+	const dataURL = 'data:text/html;base64,' + encodeURIComponent(pageHtml)
 	chrome.tabs.update(tab.id, {url: dataURL})
 }
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-	var c = 0
-
-	var xmlHttp = new XMLHttpRequest()
+chrome.browserAction.onClicked.addListener(function() {
+	const xmlHttp = new XMLHttpRequest()
 	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
-	xmlHttp.onload = function () {
-		var html = xmlHttp.responseText
+	xmlHttp.onload = function() {
+		const html = xmlHttp.responseText
 
 		chrome.windows.getAll({populate: true}, function(windows) {
 			windows.forEach(function(win) {
@@ -50,7 +48,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 					if (inWhitelist(tab.url)) return
 
 					sleepTab(html, tab)
-					c++
 				})
 			})
 		})
@@ -58,9 +55,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	xmlHttp.send(null)
 })
 
-const onInstalledDetails = {details: {'OnInstalledReason': 'installed'}}
-
-chrome.runtime.onInstalled.addListener(function(onInstalledDetails) {
+chrome.runtime.onInstalled.addListener(function() {
 	chrome.contextMenus.create({
 		id : 'SleepTab',
 		title : chrome.i18n.getMessage('contextMenuTitle'),
@@ -69,22 +64,22 @@ chrome.runtime.onInstalled.addListener(function(onInstalledDetails) {
 })
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-	var xmlHttp = new XMLHttpRequest()
+	const xmlHttp = new XMLHttpRequest()
 	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
-	xmlHttp.onload = function () {
-		var html = xmlHttp.responseText
+	xmlHttp.onload = function() {
+		const html = xmlHttp.responseText
 		sleepTab(html, tab)
 	}
 	xmlHttp.send(null)
 })
 
-chrome.commands.onCommand.addListener(function(command) {
-	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
-		var xmlHttp = new XMLHttpRequest()
+chrome.commands.onCommand.addListener(function() {
+	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
+		const xmlHttp = new XMLHttpRequest()
 		xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
-		xmlHttp.onload = function () {
-			var html = xmlHttp.responseText
-			sleepTab(html, tab[0])
+		xmlHttp.onload = function() {
+			const html = xmlHttp.responseText
+			sleepTab(html, tabs[0])
 		}
 		xmlHttp.send(null)
 	})

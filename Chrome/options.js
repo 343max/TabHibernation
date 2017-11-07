@@ -1,9 +1,9 @@
 'use strict'
 
 function save_options() {
-	var whitelist = document.getElementById('whitelist').value
+	const whitelist = document.getElementById('whitelist').value
 	chrome.storage.sync.set({whitelist: whitelist}, function() {
-		var status = document.getElementById('status')
+		const status = document.getElementById('status')
 		status.textContent = chrome.i18n.getMessage('saveOptions')
 		setTimeout(function() {
 			status.textContent = ''
