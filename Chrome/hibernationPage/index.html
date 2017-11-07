@@ -23,28 +23,19 @@ function restorePage() {
 }
 
 window.onload = function() {
-    document.title = document.title + ' ' + pageInfo.title;
+    document.title += pageInfo.title
 
     if(typeof pageInfo.favIconUrl !== 'undefined') {
         setFavicon(pageInfo.favIconUrl);
     }
 
-    document.querySelectorAll('.pageTitle').forEach(function(o) {
-        o.innerText = pageInfo.title;
-    });
+    document.getElementById('pageTitle').innerText = pageInfo.title
+    document.getElementById('hibernationInfo').innerText = pageInfo.hibernationInfo
+    document.getElementById('pageURL').innerText = pageInfo.url
 
-    document.querySelectorAll('.hibernationInfo').forEach(function(o) {
-        o.innerText = pageInfo.hibernationInfo;
-    });
-
-    document.querySelectorAll('.pageURL').forEach(function(o) {
-        o.innerText = pageInfo.url;
-    });
-
-    document.querySelectorAll('.wakeUpButton').forEach(function(o) {
-        o.innerText = pageInfo.buttonText;
-        o.onclick = restorePage;
-    });
+    const wakeUpButton = document.getElementById('wakeUpButton')
+    wakeUpButton.innerText = pageInfo.buttonText
+    wakeUpButton.onclick = restorePage
 
 
     // restore when space-key is pressed
@@ -78,7 +69,7 @@ h1 {
     font-size: 20px;
 }
 
-a.wakeUpButton {
+a#wakeUpButton {
     cursor: pointer;
     color: white;
     text-decoration: none;
@@ -92,28 +83,27 @@ a.wakeUpButton {
     margin-right: auto;
 }
 
-a.wakeUpButton:hover {
+a#wakeUpButton:hover {
     background-color: #26429c;
 }
 
-span.pageURL {
+span#pageURL {
     color: darkgrey;
     font-size: 13px;
     word-wrap: break-word;
 }
 
-a.wakeUpButton:active {
+a#wakeUpButton:active {
     background-color: #26429c;
 }
-
     </style>
-    <title>&#9790;</title>
+    <title>&#9790;&nbsp;</title>
 </head>
 <body>
     <div id="info">
-        <h1>&quot;<span class="pageTitle"></span>&quot; <span class="hibernationInfo"></h1>
-        <p><span class="pageURL"></span></p>
-        <p><a class="wakeUpButton"></a></p>
+        <h1>&quot;<span id="pageTitle"></span>&quot; <span id="hibernationInfo"></span></h1>
+        <p><span id="pageURL"></span></p>
+        <p><a id="wakeUpButton"></a></p>
     </div>
 </body>
 </html>
