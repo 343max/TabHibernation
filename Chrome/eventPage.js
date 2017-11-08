@@ -1,12 +1,10 @@
 'use strict'
 
-let whitelist
 let whitelistArray = new Array()
 
 chrome.storage.sync.get(function(items) {
 	if (items.whitelist) {
-		whitelist = items.whitelist
-		whitelistArray = whitelist.split('\n')
+		whitelistArray = items.whitelist.split('\n')
 	}
 })
 
@@ -39,16 +37,16 @@ chrome.browserAction.onClicked.addListener(function() {
 	xmlHttp.onload = function() {
 		const html = xmlHttp.responseText
 
-		chrome.windows.getAll({populate: true}, function(windows) {
-			windows.forEach(function(win) {
-				win.tabs.forEach(function(tab) {
-					if (tab.active || tab.highlighted || tab.pinned) return
-					if (tab.status !== 'complete') return
-					if (!tab.url.match(/^https?:\/\//)) return
-					if (inWhitelist(tab.url)) return
-
-					sleepTab(html, tab)
-				})
+		chrome.tabs.query({
+			active: false,
+			pinned: false,
+			highlighted: false,
+			status: 'complete',
+			url: ['http://*/*', 'https://*/*', 'ftp://*/*', 'file://*/*']
+		}, function(tabs) {
+			tabs.forEach(function(tab) {
+				if (inWhitelist(tab.url)) return
+				sleepTab(html, tab)
 			})
 		})
 	}

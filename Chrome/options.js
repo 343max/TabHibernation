@@ -12,7 +12,7 @@ function save_options() {
 }
 
 function restore_options() {
-	chrome.storage.sync.get({whitelist: ''}, function(items) {
+	chrome.storage.sync.get(function(items) {
 		document.getElementById('whitelist').value = items.whitelist
 	})
 }
