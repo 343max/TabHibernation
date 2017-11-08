@@ -17,13 +17,12 @@ chrome.runtime.onInstalled.addListener(function() {
 })
 
 function inWhitelist(url) {
-	let listed = false
 	whitelistArray.forEach(function(item) {
 		if (url.startsWith(item)) {
-			listed = true
+			return true
 		}
 	})
-	return listed
+	return false
 }
 
 function sleepTab(html, tab, img) {
