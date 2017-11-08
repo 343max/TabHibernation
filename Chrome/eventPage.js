@@ -8,6 +8,14 @@ chrome.storage.sync.get(function(items) {
 	if (items.audible !== undefined) caffeinatedAudio = items.audible
 })
 
+chrome.runtime.onInstalled.addListener(function() {
+	chrome.contextMenus.create({
+		id : 'SleepTab',
+		title : chrome.i18n.getMessage('contextMenuTitle'),
+		contexts : ['page']
+	})
+})
+
 function inWhitelist(url) {
 	let listed = false
 	whitelistArray.forEach(function(item) {
@@ -52,14 +60,6 @@ chrome.browserAction.onClicked.addListener(function() {
 		})
 	}
 	xmlHttp.send(null)
-})
-
-chrome.runtime.onInstalled.addListener(function() {
-	chrome.contextMenus.create({
-		id : 'SleepTab',
-		title : chrome.i18n.getMessage('contextMenuTitle'),
-		contexts : ['page']
-	})
 })
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
