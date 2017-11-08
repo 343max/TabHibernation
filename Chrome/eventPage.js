@@ -1,11 +1,13 @@
 'use strict'
 
 let whitelistArray = new Array()
+let caffeinatedAudio = false
 
 chrome.storage.sync.get(function(items) {
 	if (items.whitelist) {
 		whitelistArray = items.whitelist.split('\n')
 	}
+	caffeinatedAudio = items.audible
 })
 
 function inWhitelist(url) {
@@ -46,6 +48,7 @@ chrome.browserAction.onClicked.addListener(function() {
 		}, function(tabs) {
 			tabs.forEach(function(tab) {
 				if (inWhitelist(tab.url)) return
+				if (tab.audible && caffeinatedAudio) return
 				sleepTab(html, tab)
 			})
 		})

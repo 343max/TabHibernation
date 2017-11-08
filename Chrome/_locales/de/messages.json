@@ -51,6 +51,10 @@
 		"message": "Eine URL pro Zeile!",
 		"description": "Zweiter fett formatierter Satz auf der Einstellungsseite"
 	},
+	"optionsAudible": {
+		"message": "Tabs die Audio spielen wach halten",
+		"description": "Checkbox für die Audio-Einstellung"
+	},
 	"optionsSaveButton": {
 		"message": "Speichern",
 		"description": "Text des Speichern-Buttons"

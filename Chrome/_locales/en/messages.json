@@ -51,6 +51,10 @@
 		"message": "One URL per line!",
 		"description": "options page second bold sentence"
 	},
+	"optionsAudible": {
+		"message": "keep audio-playing tabs awake",
+		"description": "checkbox for the audio-option"
+	},
 	"optionsSaveButton": {
 		"message": "Save",
 		"description": "save button text"
