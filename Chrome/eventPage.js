@@ -30,7 +30,7 @@ function sleepTab(html, tab) {
 	}
 	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
 	const dataURL = 'data:text/html;base64,' + btoa(pageHtml)
-	chrome.tabs.update(tab.id, {url: dataURL})
+	chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 }
 
 chrome.browserAction.onClicked.addListener(function() {
