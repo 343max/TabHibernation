@@ -35,7 +35,7 @@ function sleepTab(html, tab, img) {
 		favIconUrl: tab.favIconUrl
 	}
 	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
-	const dataURL = 'data:text/html;base64,' + btoa(pageHtml)
+	const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml)
 	chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 }
 
