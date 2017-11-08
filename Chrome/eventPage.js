@@ -26,12 +26,13 @@ function inWhitelist(url) {
 	return listed
 }
 
-function sleepTab(html, tab) {
+function sleepTab(html, tab, img) {
 	const pageInfo = {
 		url: tab.url,
 		title: tab.title,
 		hibernationInfo: chrome.i18n.getMessage('hibernationPageInfo'),
 		buttonText: chrome.i18n.getMessage('hibernationPageButton'),
+		screenshot: img,
 		favIconUrl: tab.favIconUrl
 	}
 	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
@@ -67,7 +68,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
 	xmlHttp.onload = function() {
 		const html = xmlHttp.responseText
-		sleepTab(html, tab)
+		chrome.tabs.captureVisibleTab({format: 'png'}, function(img) {
+			sleepTab(html, tab, img)
+		})
 	}
 	xmlHttp.send(null)
 })
@@ -78,7 +81,9 @@ chrome.commands.onCommand.addListener(function() {
 		xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
 		xmlHttp.onload = function() {
 			const html = xmlHttp.responseText
-			sleepTab(html, tabs[0])
+			chrome.tabs.captureVisibleTab({format: 'png'}, function(img) {
+				sleepTab(html, tabs[0], img)
+			})
 		}
 		xmlHttp.send(null)
 	})

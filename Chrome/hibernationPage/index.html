@@ -28,6 +28,9 @@ window.onload = function() {
     if (pageInfo.favIconUrl !== undefined) {
         setFavicon(pageInfo.favIconUrl)
     }
+    if (pageInfo.screenshot !== undefined) {
+        document.getElementById('screenshot').src = pageInfo.screenshot
+    }
 
     document.getElementById('pageTitle').innerText = pageInfo.title
     document.getElementById('hibernationInfo').innerText = pageInfo.hibernationInfo
@@ -96,6 +99,10 @@ span#pageURL {
 a#wakeUpButton:active {
     background-color: #26429c;
 }
+
+img {
+    width: 100%;
+}
     </style>
     <title>&#9790;&nbsp;</title>
 </head>
@@ -103,6 +110,7 @@ a#wakeUpButton:active {
     <div id="info">
         <h1>&quot;<span id="pageTitle"></span>&quot; <span id="hibernationInfo"></span></h1>
         <p><span id="pageURL"></span></p>
+        <p><img id="screenshot" /></p>
         <p><a id="wakeUpButton"></a></p>
     </div>
 </body>
