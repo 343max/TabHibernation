@@ -4,7 +4,7 @@ let whitelistArray = new Array()
 let caffeinatedAudio = false
 
 chrome.storage.sync.get(function(items) {
-	if (items.whitelist !== undefined) whitelistArray = items.whitelist.split('\n')
+	if (items.whitelist) whitelistArray = items.whitelist.split('\n')
 	if (items.audible !== undefined) caffeinatedAudio = items.audible
 })
 
