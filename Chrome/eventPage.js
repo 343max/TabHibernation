@@ -31,11 +31,29 @@ function sleepTab(html, tab, img) {
 		title: tab.title,
 		hibernationInfo: chrome.i18n.getMessage('hibernationPageInfo'),
 		buttonText: chrome.i18n.getMessage('hibernationPageButton'),
-		screenshot: img,
 		favIconUrl: tab.favIconUrl
 	}
+
 	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
-	const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml)
+
+	if (img) {
+		const canvas = document.createElement('canvas')
+		const ctx = canvas.getContext('2d')
+
+		const i = new Image()
+		i.src = img
+		i.onload = function() {
+			canvas.width = 300
+			canvas.height = canvas.width * (i.height / i.width)
+			ctx.drawImage(i, 0, 0, canvas.width, canvas.height)
+			img = canvas.toDataURL('image/webp')
+
+			const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml.replace(/__WEBP__/, img))
+			chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
+		}
+		return
+	}
+	const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml.replace(/__WEBP__/, 'data:'))
 	chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 }
 
