@@ -55,6 +55,10 @@
 		"message": "keep audio-playing tabs awake",
 		"description": "checkbox for the audio-option"
 	},
+	"optionsThumbnails": {
+		"message": "show screenshot of manually hibernated tabs (experimental!)",
+		"description": "checkbox for the thumbnail-option"
+	},
 	"optionsSaveButton": {
 		"message": "Save",
 		"description": "save button text"

@@ -2,10 +2,23 @@
 
 let whitelistArray = new Array()
 let caffeinatedAudio = false
+let thumbnails = false
 
 chrome.storage.sync.get(function(items) {
 	if (items.whitelist) whitelistArray = items.whitelist.split('\n')
 	if (items.audible !== undefined) caffeinatedAudio = items.audible
+	if (items.thumbnails !== undefined) thumbnails = items.thumbnails
+})
+
+chrome.storage.onChanged.addListener(function(changes, area) {
+	if (area === 'sync') {
+		chrome.storage.sync.get(function(items) {
+			console.table(items)
+			if (items.whitelist) whitelistArray = items.whitelist.split('\n')
+			if (items.audible !== undefined) caffeinatedAudio = items.audible
+			if (items.thumbnails !== undefined) thumbnails = items.thumbnails
+		})
+	}
 })
 
 chrome.runtime.onInstalled.addListener(function() {
@@ -36,7 +49,7 @@ function sleepTab(html, tab, img) {
 
 	const pageHtml = html.replace(/\{\/\*pageInfoObject\*\/\}/, JSON.stringify(pageInfo))
 
-	if (img) {
+	if (img && thumbnails) {
 		const canvas = document.createElement('canvas')
 		const ctx = canvas.getContext('2d')
 
@@ -57,12 +70,21 @@ function sleepTab(html, tab, img) {
 	chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 }
 
+function sleepSingle(tab) {
+	const xmlHttp = new XMLHttpRequest()
+	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
+	xmlHttp.onload = function() {
+		chrome.tabs.captureVisibleTab({format: 'png'}, function(img) {
+			sleepTab(xmlHttp.responseText, tab, img)
+		})
+	}
+	xmlHttp.send(null)
+}
+
 chrome.browserAction.onClicked.addListener(function() {
 	const xmlHttp = new XMLHttpRequest()
 	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
 	xmlHttp.onload = function() {
-		const html = xmlHttp.responseText
-
 		chrome.tabs.query({
 			active: false,
 			pinned: false,
@@ -73,7 +95,7 @@ chrome.browserAction.onClicked.addListener(function() {
 			tabs.forEach(function(tab) {
 				if (inWhitelist(tab.url)) return
 				if (tab.audible && caffeinatedAudio) return
-				sleepTab(html, tab)
+				sleepTab(xmlHttp.responseText, tab)
 			})
 		})
 	}
@@ -81,27 +103,11 @@ chrome.browserAction.onClicked.addListener(function() {
 })
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-	const xmlHttp = new XMLHttpRequest()
-	xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
-	xmlHttp.onload = function() {
-		const html = xmlHttp.responseText
-		chrome.tabs.captureVisibleTab({format: 'png'}, function(img) {
-			sleepTab(html, tab, img)
-		})
-	}
-	xmlHttp.send(null)
+	sleepSingle(tab)
 })
 
 chrome.commands.onCommand.addListener(function() {
 	chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
-		const xmlHttp = new XMLHttpRequest()
-		xmlHttp.open('GET', chrome.runtime.getURL('hibernationPage/index.html'), true)
-		xmlHttp.onload = function() {
-			const html = xmlHttp.responseText
-			chrome.tabs.captureVisibleTab({format: 'png'}, function(img) {
-				sleepTab(html, tabs[0], img)
-			})
-		}
-		xmlHttp.send(null)
+		sleepSingle(tabs[0])
 	})
 })
