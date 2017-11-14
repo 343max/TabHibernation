@@ -13,7 +13,6 @@ chrome.storage.sync.get(function(items) {
 chrome.storage.onChanged.addListener(function(changes, area) {
 	if (area === 'sync') {
 		chrome.storage.sync.get(function(items) {
-			console.table(items)
 			if (items.whitelist) whitelistArray = items.whitelist.split('\n')
 			if (items.audible !== undefined) caffeinatedAudio = items.audible
 			if (items.thumbnails !== undefined) thumbnails = items.thumbnails
