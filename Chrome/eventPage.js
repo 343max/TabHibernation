@@ -58,14 +58,14 @@ function sleepTab(html, tab, img) {
 			canvas.width = 300
 			canvas.height = canvas.width * (i.height / i.width)
 			ctx.drawImage(i, 0, 0, canvas.width, canvas.height)
-			img = canvas.toDataURL('image/webp')
+			img = `<img id="screenshot" src="${canvas.toDataURL('image/webp')}"/>`
 
-			const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml.replace(/__WEBP__/, img))
+			const dataURL = `data:text/html;charset=UTF-8,${encodeURIComponent(pageHtml.replace(/<!-- SCREENSHOT_IF_ENABLED -->/, img))}`
 			chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 		}
 		return
 	}
-	const dataURL = 'data:text/html;charset=UTF-8,' + encodeURIComponent(pageHtml.replace(/__WEBP__/, 'data:'))
+	const dataURL = `data:text/html;charset=UTF-8,${encodeURIComponent(pageHtml)}`
 	chrome.tabs.update(tab.id, {url: dataURL, autoDiscardable: true})
 }
 
