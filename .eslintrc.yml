@@ -1,0 +1,88 @@
+extends: eslint:recommended
+
+env:
+  es6: true,
+  browser: true,
+  webextensions: true
+
+rules:
+  # warnings
+  no-control-regex: warn
+  no-ternary: warn
+  prefer-const: warn
+  prefer-template: warn
+  no-magic-numbers:
+    - warn
+    - ignoreArrayIndexes: true
+  # errors
+  yoda: error
+  radix: error
+  no-useless-return: error
+  no-useless-concat: error
+  no-unused-expressions: error
+  no-self-compare: error
+  no-script-url: error
+  no-return-assign: error
+  no-octal-escape: error
+  no-loop-func: error
+  no-lone-blocks: error
+  no-invalid-this: error
+  no-implied-eval: error
+  no-floating-decimal: error
+  no-eval: error
+  no-eq-null: error
+  no-empty-function: error
+  no-else-return: error
+  no-alert: error
+  eqeqeq: error
+  dot-notation: error
+  no-shadow: error
+  no-undef-init: error
+  no-use-before-define: error
+  brace-style: error
+  comma-dangle: error
+  comma-spacing: error
+  eol-last: error
+  func-call-spacing: error
+  keyword-spacing: error
+  linebreak-style: error
+  no-bitwise: error
+  no-lonely-if: error
+  no-multi-assign: error
+  no-multiple-empty-lines: error
+  no-nested-ternary: error
+  no-trailing-spaces: error
+  semi-spacing: error
+  space-before-blocks: error
+  space-in-parens: error
+  space-infix-ops: error
+  switch-colon-spacing: error
+  wrap-regex: error
+  no-confusing-arrow: error
+  no-useless-computed-key: error
+  no-var: error
+  template-curly-spacing: error
+  semi:
+    - error
+    - never
+  no-extra-parens:
+    - error
+    - all
+  valid-typeof:
+    - error
+    - requireStringLiterals: true
+  strict:
+    - error
+    - global
+  curly:
+    - error
+    - multi-line
+  indent:
+    - error
+    - tab
+  quotes:
+    - error
+    - single
+  space-before-function-paren:
+    - error
+    - never
